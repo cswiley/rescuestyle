@@ -34,11 +34,6 @@ class StyleGuide {
         }
     }
 
-    static function getTwig() {
-
-       Twig::set(static::partials);
-    }
-
     static function code($title, $html = '', $code = '', $comment = '')
     {
         if ($code === '') {
@@ -156,7 +151,6 @@ class StyleGuide {
     function selectPath($base, $extraListing)
     {
         return isset($extraListing[$base]) ? $this->directory : static::$dirPath;
-
     }
 
     function render($segments, $routePath)
