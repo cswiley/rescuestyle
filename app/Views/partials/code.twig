@@ -1,0 +1,25 @@
+<div class="style-code clearfix position-relative">
+    <h3 class="text-faded">{{ title }}
+        {% if not showCode %}
+        <small><a href="#" data-toggle class="button clear margin-0">&lt;&gt;</a></small>
+        {% endif %}
+    </h3>
+    {% if comment %}
+        <p>{{ comment | raw }}</p>
+    {% endif %}
+
+    <div class="margin-bottom-3">
+        {% if not showCode %}
+            <div class="divider ">
+                <div class="toggle-code hide margin-bottom-2">
+                    <pre class="language-php"><code class="padding-bottom-2">{{ code }}</code></pre>
+                </div>
+            </div>
+        {% else %}
+            <pre class="language-html"><code class="padding-bottom-2">{{ code }}</code></pre>
+        {% endif %}
+        {% if html %}
+            {{ html | raw }}
+        {% endif %}
+    </div>
+</div>

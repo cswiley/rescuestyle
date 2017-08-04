@@ -1,0 +1,20 @@
+{
+  "name": "rescuestyle",
+  "authors": [
+    "cameron@rescueagency.com"
+  ],
+  "description": "rescue frontend style components",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "foundation-sites": "^6.4.1"
+  }
+}

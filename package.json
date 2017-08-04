@@ -1,0 +1,24 @@
+{
+  "name": "no-minor",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "scripts": {
+    "start": "echo 'Hi. Give me a minute to get things setup...' && npm install && bower install && composer install && gulp -o"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.18.13",
+    "gulp": "^3.8.11",
+    "gulp-clean-css": "^3.3.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-load-plugins": "^1.5.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.3.2",
+    "gulp-sourcemaps": "^2.6.0",
+    "js-yaml": "^3.9.1",
+    "opn": "^5.1.0"
+  },
+  "author": "",
+  "license": "ISC"
+}

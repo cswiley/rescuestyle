@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head lang="en-US">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    {% if styles %}
+        {% for style in styles %}
+            {{ style | raw }}
+        {% endfor %}
+    {% endif %}
+</head>
+<body class="{{ pageName }}" data-js-route="{{ jsController }}">
+
