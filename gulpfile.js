@@ -29,7 +29,7 @@ gulp.task('styles', function () {
     .pipe(gulp.dest('./public/assets/css'));
 });
 
-gulp.task('sync', ['fonts', 'styles', 'scripts', 'css'], function () {
+gulp.task('sync', ['styles', 'scripts'], function () {
     browser.init({
         proxy: 'rescue-style.lcl',
         port : '8888',

@@ -9,11 +9,16 @@ class StyleGuide {
     private $base = '';
     private $scripts = [];
     private $styles = [];
+    private $directory;
 
     function __construct($opts)
     {
         if (! empty($opts['base'])) {
             $this->base = $opts['base'];
+        }
+
+        if (!empty($opts['directory'])) {
+            $this->directory = $opts['directory'];
         }
 
         if (! empty($this->base)) {
@@ -135,17 +140,23 @@ class StyleGuide {
 
         $navListing = [];
         foreach ($dirListing as $name => $files) {
-            $navListing[$name] = array_map(function ($file) {
+            $navListing[$name] = array_map(function ($file) use ($directoryPath) {
                 $fileName = preg_replace('/\.[\w]+/', '', $file);
 
                 return [
                     'file' => $fileName,
-                    'name' => preg_replace('/[_-]/', ' ', $fileName)
+                    'name' => preg_replace('/[_-]/', ' ', $fileName),
                 ];
             }, $files);
         }
 
         return $navListing;
+    }
+
+    function selectPath($base, $extraListing)
+    {
+        return isset($extraListing[$base]) ? $this->directory : static::$dirPath;
+
     }
 
     function render($segments, $routePath)
@@ -154,9 +165,8 @@ class StyleGuide {
 
         $navListing = $this->getNavListing(static::$dirPath);
 
-        if (! empty($this->extraPath)) {
-            $extraListing = $this->getNavListing($this->extraPath);
-            $extraListing;
+        if (file_exists($this->directory)) {
+            $extraListing = $this->getNavListing($this->directory);
             $navListing = array_merge($navListing, $extraListing);
         }
 
@@ -170,8 +180,9 @@ class StyleGuide {
                     if (in_array($file['file'], $blacklist)) {
                         continue;
                     }
+                    $basePath = $this->selectPath($base, $extraListing);
                     $path = join('/', [
-                        static::$dirPath,
+                        $basePath,
                         $base,
                         $file['file']
                     ]);
@@ -184,9 +195,10 @@ class StyleGuide {
         } else if (count($segments) === 1) {
             $html  = '';
             $files = $navListing[first($segments)];
+            $basePath = $this->selectPath(first($segments), $extraListing);
             foreach ($files as $fileInfo) {
                 $path = join('/', [
-                    static::$dirPath,
+                    $basePath,
                     $routePath,
                     $fileInfo['file']
                 ]);
@@ -195,7 +207,8 @@ class StyleGuide {
             }
             $page = $html;
         } else {
-            $pagePath .= '/' . $routePath;
+            $basePath = $this->selectPath(first($segments), $extraListing);
+            $pagePath = $basePath . $routePath;
             $page = static::view($pagePath, [], true);
         }
 
