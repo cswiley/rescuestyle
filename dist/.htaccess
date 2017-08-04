@@ -3,4 +3,4 @@ RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_URI} !\.(?:jpe?g|gif|eot|woff2|woff|ttf|otf|svg|bmp|png|tiff|css|js)$ [NC]
-RewriteRule (.*) index.php/$1 [L]
+RewriteRule (.*) styleguide.php/$1 [L]

@@ -22,9 +22,9 @@ Route::match('/styleguide([/a-zA-Z0-9_-]+)*', function ($segments, $routePath) {
     ];
 
     $styleGuide = new StyleGuide([
-        'base' => 'styleguide',
-        'scripts' => $scripts,
-        'styles'  => $styles,
+        'base'      => 'styleguide',
+        'scripts'   => $scripts,
+        'styles'    => $styles,
         'directory' => __DIR__ . '/../styleguide'
     ]);
     echo $styleGuide->render($segments, $routePath);
